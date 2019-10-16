@@ -7,11 +7,22 @@ export default function Post(props) {
 
   return (
     <li className="post">
-      <a className="link" href={url}>{title}</a>
+      <a className="link" href={url}>
+        {title}
+      </a>
       <div className="meta-info-light">
-        <span>by <Link to={`/user?id=${by}`}>{by}</Link></span>
-        <span>on {`${dateTime.getDay()}/${dateTime.getMonth()}/${dateTime.getFullYear()}, ${dateTime.getHours()}:${dateTime.getMinutes().toString().length > 1 ? '' : '0'}${dateTime.getMinutes()}`}</span>
-        <span>with <Link to={`post?id=${id}`}>{descendants}</Link> comments</span>
+        <span>
+          by <Link to={`/user?id=${by}`}>{by}</Link>
+        </span>
+        <span>
+          on{' '}
+          {`${dateTime.getDay()}/${dateTime.getMonth()}/${dateTime.getFullYear()}, ${dateTime.getHours()}:${
+            dateTime.getMinutes().toString().length > 1 ? '' : '0'
+          }${dateTime.getMinutes()}`}
+        </span>
+        <span>
+          with <Link to={`post?id=${id}`}>{descendants}</Link> comments
+        </span>
       </div>
     </li>
   );

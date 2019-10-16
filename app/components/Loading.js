@@ -11,7 +11,9 @@ export default class Loading extends React.Component {
 
   componentDidMount() {
     this.interval = setInterval(() => {
-      this.setState(({text}) => ({ text: text.includes('...') ? text.replace('...', '') : `${text}.` }));
+      this.setState(({ text }) => ({
+        text: text.includes('...') ? text.replace('...', '') : `${text}.`
+      }));
     }, 300);
   }
 
@@ -20,11 +22,9 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    return (
-      <h3>{this.state.text}</h3>
-    );
+    return <h3>{this.state.text}</h3>;
   }
-};
+}
 
 Loading.defaultProps = {
   text: 'Loading'

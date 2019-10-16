@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { fetchStories } from '../utils/api';
 import Loading from './Loading';
 import Post from './Post';
@@ -15,9 +15,9 @@ export default class Stories extends Component {
 
   componentDidMount() {
     fetchStories(this.props.category)
-      .then(posts => this.setState({posts}))
-      .catch(error => { 
-        console.error(error.message)
+      .then(posts => this.setState({ posts }))
+      .catch(error => {
+        console.error(error.message);
       });
   }
 
@@ -26,13 +26,17 @@ export default class Stories extends Component {
 
     return (
       <>
-      {posts ?
-      <ul>
-        {posts.map(post => <Post post={post} key={post.id} />)}
-      </ul>
-      : <Loading />}
+        {posts ? (
+          <ul>
+            {posts.map(post => (
+              <Post post={post} key={post.id} />
+            ))}
+          </ul>
+        ) : (
+          <Loading />
+        )}
       </>
-    )
+    );
   }
 }
 

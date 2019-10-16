@@ -12,6 +12,8 @@ export function fetchStories(category, limit = 50) {
         throw new Error('Error');
       }
 
-      return Promise.all(storyIds.slice(0, limit).map(storyId => fetchStory(storyId)));
+      return Promise.all(
+        storyIds.slice(0, limit).map(storyId => fetchStory(storyId))
+      );
     });
 }
