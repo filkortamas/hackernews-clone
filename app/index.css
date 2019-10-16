@@ -20,6 +20,25 @@ li {
   font-weight: bold;
 }
 
+.nav-bar {
+  display: flex;
+}
+
+.nav-item ~ .nav-item {
+  margin-left: 10px;
+}
+
+.nav-link {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-link.active {
+  color: rgb(187, 46, 31);
+}
+
 .meta-info-light {
   margin-top: 5px;
   color: gray;
