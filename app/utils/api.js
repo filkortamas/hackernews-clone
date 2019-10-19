@@ -17,3 +17,8 @@ export function fetchStories(category, limit = 50) {
       );
     });
 }
+
+export const fetchUser = username =>
+  fetch(`https://hacker-news.firebaseio.com/v0/user/${username}.json`)
+    .then(res => res.json())
+    .then(data => data);
