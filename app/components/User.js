@@ -1,31 +1,77 @@
 import React from 'react';
 import queryString from 'query-string';
-import { fetchUser } from '../utils/api';
+
 import Loading from './Loading';
+import Post from './Post';
+
+import { fetchUser, fetchStory } from '../utils/api';
+import { getFormatedDateFromNumber, tousandSeparator } from '../utils';
 
 export default class User extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: null
+      user: null,
+      posts: null
     };
+  }
+
+  fetchUserStories(storyIds) {
+    if (!storyIds || storyIds.length === 0) {
+      return;
+    }
+
+    Promise.all(storyIds.slice(0, 30).map(storyId => fetchStory(storyId))).then(
+      posts => {
+        this.setState({
+          posts: posts.filter(post => !post.deleted && !!post.title)
+        });
+      }
+    );
   }
 
   componentDidMount() {
     const { id: username } = queryString.parse(this.props.location.search);
     fetchUser(username).then(user => {
       this.setState({ user });
+      this.fetchUserStories(user.submitted);
+      console.log(new Date(1000 * user.created));
     });
   }
 
   render() {
+    const { user, posts } = this.state;
+
     return (
       <>
-        {this.state.user ? (
-          <p>{JSON.stringify(this.state.user)}</p>
+        {user ? (
+          <>
+            <h1 className="header">{user.id}</h1>
+            <div className="meta-info-light">
+              <span>
+                joinded
+                <strong> {getFormatedDateFromNumber(user.created)} </strong>
+              </span>
+              <span>
+                has <strong>{tousandSeparator(user.karma)}</strong> karma
+              </span>
+            </div>
+            {posts ? (
+              <>
+                <h2>Posts</h2>
+                <ul>
+                  {posts.map(
+                    post => post && <Post post={post} key={post.id} />
+                  )}
+                </ul>
+              </>
+            ) : (
+              <Loading text="Fetching posts" />
+            )}
+          </>
         ) : (
-          <Loading />
+          <Loading text="Fetching user" />
         )}
       </>
     );
