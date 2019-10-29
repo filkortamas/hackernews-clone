@@ -36,7 +36,6 @@ export default class User extends React.Component {
     fetchUser(username).then(user => {
       this.setState({ user });
       this.fetchUserStories(user.submitted);
-      console.log(new Date(1000 * user.created));
     });
   }
 
@@ -57,6 +56,7 @@ export default class User extends React.Component {
                 has <strong>{tousandSeparator(user.karma)}</strong> karma
               </span>
             </div>
+            <p dangerouslySetInnerHTML={{ __html: user.about }} />
             {posts ? (
               <>
                 <h2>Posts</h2>
