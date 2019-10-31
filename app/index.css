@@ -52,3 +52,7 @@ li {
 .meta-info-light a {
   color: black;
 }
+
+.header {
+  margin-bottom: 5px;
+}

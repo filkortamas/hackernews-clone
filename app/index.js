@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Stories from './components/Stories';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink
 } from 'react-router-dom';
+import Stories from './components/Stories';
+import User from './components/User';
+import './index.css';
 
 const App = () => (
   <Router>
@@ -31,6 +32,7 @@ const App = () => (
         path="/new"
         render={props => <Stories category="new" {...props} />}
       />
+      <Route path="/user" component={User} />
     </Switch>
   </Router>
 );
