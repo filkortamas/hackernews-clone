@@ -49,7 +49,7 @@ export default class User extends React.Component {
             <h1 className="header">{user.id}</h1>
             <div className="meta-info-light">
               <span>
-                joinded
+                joined
                 <strong> {getFormatedDateFromNumber(user.created)} </strong>
               </span>
               <span>

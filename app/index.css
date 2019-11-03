@@ -20,6 +20,10 @@ li {
   font-weight: bold;
 }
 
+.link--big {
+  font-size: 32px;
+}
+
 .nav-bar {
   display: flex;
 }

@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Stories from './components/Stories';
 import User from './components/User';
+import Comments from './components/Comments';
 import './index.css';
 
 const App = () => (
@@ -33,6 +34,7 @@ const App = () => (
         render={props => <Stories category="new" {...props} />}
       />
       <Route path="/user" component={User} />
+      <Route path="/post" component={Comments} />
     </Switch>
   </Router>
 );

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { getFormatedDateFromNumber } from '../utils';
 
-export default function Post(props) {
-  const { by, descendants, id, time, title, url } = props.post;
+export default function Post({ titleClass, ...restProps }) {
+  const { by, descendants, id, time, title, url } = restProps.post;
 
   return (
     <li className="post">
-      <a className="link" href={url}>
+      <a className={`link ${titleClass}`} href={url}>
         {title}
       </a>
       <div className="meta-info-light">
