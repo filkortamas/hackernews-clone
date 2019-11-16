@@ -6,44 +6,33 @@ import {
   Route,
   NavLink
 } from 'react-router-dom';
-import Stories from './components/Stories';
-import User from './components/User';
-import Comments from './components/Comments';
+
 import './index.css';
 
-const App = () => (
-  <div className="container light">
-    <Router>
-      <ul className="nav-bar">
-        <li className="nav-item">
-          <NavLink className="nav-link" activeClassName="active" exact to="/">
-            Top
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" exact to="/new">
-            New
-          </NavLink>
-        </li>
-      </ul>
-      <Switch>
-        <Route
-          key="/"
-          exact
-          path="/"
-          render={props => <Stories {...props} />}
-        />
-        <Route
-          key="/new"
-          exact
-          path="/new"
-          render={props => <Stories category="new" {...props} />}
-        />
-        <Route path="/user" component={User} />
-        <Route path="/post" component={Comments} />
-      </Switch>
-    </Router>
-  </div>
-);
+import { ThemeContext } from './context/theme';
+import Home from './components/Home';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      theme: 'light',
+      toggleTheme: () => {
+        this.setState(({ theme }) => ({
+          theme: theme === 'light' ? 'dark' : 'light'
+        }));
+      }
+    };
+  }
+
+  render() {
+    return (
+      <ThemeContext.Provider value={this.state}>
+        <Home />
+      </ThemeContext.Provider>
+    );
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));

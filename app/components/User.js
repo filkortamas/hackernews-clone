@@ -3,6 +3,7 @@ import queryString from 'query-string';
 
 import Loading from './Loading';
 import Post from './Post';
+import { ThemeContext } from '../context/theme';
 
 import { fetchUser, fetchStory } from '../utils/api';
 import { getFormatedDateFromNumber, tousandSeparator } from '../utils';
@@ -47,15 +48,19 @@ export default class User extends React.Component {
         {user ? (
           <>
             <h1 className="header">{user.id}</h1>
-            <div className="meta-info-light">
-              <span>
-                joined
-                <strong> {getFormatedDateFromNumber(user.created)} </strong>
-              </span>
-              <span>
-                has <strong>{tousandSeparator(user.karma)}</strong> karma
-              </span>
-            </div>
+            <ThemeContext.Consumer>
+              {({ theme }) => (
+                <div className={`meta-info-${theme}`}>
+                  <span>
+                    joined
+                    <strong> {getFormatedDateFromNumber(user.created)} </strong>
+                  </span>
+                  <span>
+                    has <strong>{tousandSeparator(user.karma)}</strong> karma
+                  </span>
+                </div>
+              )}
+            </ThemeContext.Consumer>
             <p dangerouslySetInnerHTML={{ __html: user.about }} />
             {posts ? (
               <>
