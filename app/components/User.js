@@ -25,7 +25,7 @@ export default class User extends React.Component {
     Promise.all(storyIds.slice(0, 30).map(storyId => fetchStory(storyId))).then(
       posts => {
         this.setState({
-          posts: posts.filter(post => !post.deleted && !!post.title)
+          posts: posts.filter(({ deleted, title }) => !deleted && !!title)
         });
       }
     );
@@ -62,7 +62,12 @@ export default class User extends React.Component {
                 <h2>Posts</h2>
                 <ul>
                   {posts.map(
-                    post => post && <Post post={post} key={post.id} />
+                    post =>
+                      post && (
+                        <li className="post" key={post.id}>
+                          <Post post={post} />
+                        </li>
+                      )
                   )}
                 </ul>
               </>

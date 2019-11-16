@@ -28,7 +28,14 @@ export default class Stories extends Component {
       <>
         {posts && posts.length > 0 ? (
           <ul>
-            {posts.map(post => post && <Post post={post} key={post.id} />)}
+            {posts.map(
+              post =>
+                post && (
+                  <li className="post" key={post.id}>
+                    <Post post={post} />
+                  </li>
+                )
+            )}
           </ul>
         ) : (
           <Loading />

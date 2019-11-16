@@ -22,7 +22,7 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    return <h3>{this.state.text}</h3>;
+    return <h3 className="loading">{this.state.text}</h3>;
   }
 }
 
