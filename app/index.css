@@ -10,6 +10,12 @@ li {
   list-style-type: none;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
 .post {
   margin: 20px 0;
 }
@@ -55,4 +61,20 @@ li {
 
 .header {
   margin-bottom: 5px;
+}
+
+.comment {
+  background: rgba(128, 128, 128, 0.1411764705882353);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.loading {
+  font-size: 35px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+  text-align: center;
 }
