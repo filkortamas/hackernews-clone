@@ -113,3 +113,10 @@ body,
   background-color: transparent;
   font-size: 30px;
 }
+
+.error {
+  color: red;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+}
