@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ThemeContext } from '../context/theme';
-import { getFormatedDateFromNumber } from '../utils';
+import { getFormatedDateFromNumber } from '../utils/helpers';
 
 export default function MetaInfo({ by, time, id, descendants }) {
   return (

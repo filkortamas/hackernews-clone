@@ -8,7 +8,7 @@ import {
 
 import Stories from './Stories';
 import User from './User';
-import Comments from './Comments';
+import Post from './Post';
 import { ThemeContext } from '../context/theme';
 
 export default function Home() {
@@ -54,7 +54,7 @@ export default function Home() {
                   render={props => <Stories category="new" {...props} />}
                 />
                 <Route path="/user" component={User} />
-                <Route path="/post" component={Comments} />
+                <Route path="/post" component={Post} />
               </Switch>
             </Router>
           </div>
