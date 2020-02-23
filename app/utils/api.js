@@ -4,7 +4,9 @@ export const fetchStory = storyId =>
     .then(data => data);
 
 export const fetchStories = (category, limit = 50) =>
-  fetch(`https://hacker-news.firebaseio.com/v0/${category}stories.json`)
+  fetch(
+    `https://hacker-news.firebaseio.com/v0/${category}stories.json?print=pretty`
+  )
     .then(res => res.json())
     .then(storyIds => {
       if (!storyIds) {
