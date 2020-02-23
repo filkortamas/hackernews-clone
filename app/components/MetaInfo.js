@@ -1,20 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { getFormatedDateFromNumber } from '../utils';
+import { ThemeContext } from '../context/theme';
+import { getFormatedDateFromNumber } from '../utils/helpers';
 
 export default function MetaInfo({ by, time, id, descendants }) {
   return (
-    <div className="meta-info-light">
-      <span>
-        by <Link to={`/user?id=${by}`}>{by}</Link>
-      </span>
-      <span>on {getFormatedDateFromNumber(time)}</span>
-      {id && descendants && (
-        <span>
-          with <Link to={`post?id=${id}`}>{descendants}</Link> comments
-        </span>
+    <ThemeContext.Consumer>
+      {({ theme }) => (
+        <div className={`meta-info-${theme}`}>
+          <span>
+            by <Link to={`/user?id=${by}`}>{by}</Link>
+          </span>
+          <span>on {getFormatedDateFromNumber(time)}</span>
+          {id && descendants && (
+            <span>
+              with <Link to={`post?id=${id}`}>{descendants}</Link> comments
+            </span>
+          )}
+        </div>
       )}
-    </div>
+    </ThemeContext.Consumer>
   );
 }
